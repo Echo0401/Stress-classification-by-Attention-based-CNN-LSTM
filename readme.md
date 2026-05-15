@@ -24,3 +24,46 @@ Stress is a state of tension felt when exposed to a difficult situation, and exc
 
 ## Work flow
 ![image](https://github.com/eejji/Stress-classification-by-Attention-based-CNN-LSTM/blob/main/image/Flowchart.png)
+
+
+## Preprocessing 
+- **Preprocessing**: 1. low-pass (100 Hz), 2. high-pass (0.5 Hz), 3. Notch (57-63 Hz)
+
+![Preprocessing](https://github.com/eejji/Stress-classification-by-Attention-based-CNN-LSTM/blob/main/image/Preprocessing.png)
+
+## Segmentation
+- **Beat ECG**: 0.64 s (R_P: 0.24 s, R_A: 0.4 s)
+- **RHythm ECG**: 10 s
+  
+![Segmentation](https://github.com/eejji/Stress-classification-by-Attention-based-CNN-LSTM/blob/main/image/Segmentation.png)
+
+
+## Proposed Attention-based CNN-LSTM
+![image](https://github.com/eejji/Stress-classification-by-Attention-based-CNN-LSTM/blob/main/image/Proposed_CNN_LSTM.jpg)
+
+The proposed model fuses **Beat ECG** and **Rhythm ECG** signals through parallel CNN and LSTM layers.
+
+- **Convolution Block**  
+  - Two 1D Convolutions + BatchNorm + ReLU  
+  - Residual mapping & MaxPooling for stable deep learning  
+- **Beat Network**: 3 convolution blocks  
+- **Rhythm Network**: 9 convolution blocks  
+- **Fusion & LSTM**: Combined features are processed by LSTM to capture temporal patterns  
+- **Attention Layer**: Focuses on important time-dependent features  
+- **Output**: Fully connected layer for final stress classification  
+
+➡️ Overall flow:  
+**Beat & Rhythm ECG → CNN Blocks → Fusion → LSTM → Attention → Fully Connected Layer → Classification**
+
+
+## Result
+This project evaluates model performance using 5-fold cross-validation. The performance of individual networks (Beat, Rhythm) is compared with that of the combined Fusion models.   
+- The **Beat Network** and **Rhythm Network** were evaluated independently.
+- The **Fusion model**, which combines both networks, showed a significant improvement in performance.
+- The final model, with an **Attention mechanism**, achieved the best performance with an **average accuracy of 97%** and an **F1 Score of 0.969**.
+![image](https://github.com/eejji/Stress-classification-by-Attention-based-CNN-LSTM/blob/main/image/Performance_table.png)
+
+
+## Conclusion
+This study proposes an Attention-based CNN-LSTM model that uses a single cycle and a continuous cycle of ECG together for stress diagnosis. The proposed model integrates single and continuous ECG cycles through its Beat and Rhythm networks, which operate in parallel. By utilizing repeated convolution blocks for feature extraction and enhancing pattern recognition with LSTM and Attention mechanisms, the model demonstrates comprehensive learning analysis. We achieved an average accuracy of 97% and an average F1 score of 0.969 as a result of the 5-fold cross validation performance evaluation. The accuracy increased by about 22% and the F1 score increased by 0.21 compared to the case of using only a single cycle, and the accuracy increased by about 7% and the F1 score increased by 0.07 compared to the case of using only a continuous cycle. In the 5th Fold of the cross-validation, all classes showed high predictive performance of more than 97%. These results demonstrate improved performance when single and continuous cycles are used together, as opposed to using either single-cycle or continuous-cycle methods. In future studies, we plan to improve accuracy and reliability by devising model weight reduction, model interpretability, and generalization verification methods.
+

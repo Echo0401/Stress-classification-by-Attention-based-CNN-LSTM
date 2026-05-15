@@ -1,0 +1,60 @@
+# 1. Python 虚拟环境
+.venv/
+venv/
+new_venv/
+env/
+ENV/
+*.venv
+*.env
+
+# 2. Python 编译文件
+__pycache__/
+*.py[cod]
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+*.egg
+*.whl
+
+# 3. IDE 配置文件
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# 4. Jupyter Notebook 临时文件
+.ipynb_checkpoints/
+
+# 5. 模型和大文件（重点！防止再被GitHub拒绝）
+*.h5
+*.pkl
+*.pth
+*.hdf5
+*.pt
+*.ckpt
+*.mat
+*.npy
+*.npz
+*.csv
+*.xlsx
+*.xls
+
+# 模型文件夹
+ECG_Model/
+Model/
+recorded_ecg_data/
+
+# 6. 日志和临时文件
+*.log
+logs/
+tmp/
+temp/
+*.tmp
+
+# 7. 系统文件
+Thumbs.db
